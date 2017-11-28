@@ -1,0 +1,335 @@
+linus command list
+systemctl get-default  /* show default start interface
+systemctl set-default <TARGET>.target  /* set default log interface
+halt / poweroff  / shutdown  /* shut down the computer
+systemctl reboot -i  /* force to shut down computer
+id  /* get id information
+passwd  /* change user password
+jobs /* show back ground running process
+<applicationName> &  /* running application in background
+bg <procesNumber>  /* let stopping process running again in background
+fg <processNunber> /* let process running in forward background
+press CTRL + C to close a process
+press CTRL + Z to stop a process
+history /* show all the commands you have input
+su <username>  /* switch other user to log in 
+su  /* switch root user
+su - /* switch user and create annother work environment
+sudo <command>  /* use root access to run command but do not switch to root user
+pwd  /* show current directory
+touch <fileName> /* creat a new file or update date and time of the exited file 
+cd ~/* switch directory to username
+cd .. /* switch directory to previous 
+ls -a  /* show all files and directory included invisible file
+ls -l /* show all files with detail information
+ls -R /* show stucture of all files and directory 
+ls -ld <fileName> /* show specified file with information
+file <fileName> /* show file type
+cp <soureFile> <targetFile>  /* copy a file 
+cp -r <soureceDirectory> <targetDirectory>  /* lcopy a directory 
+cp -rv(-r -v) <sourceDirectoru> <targetDirectory> /* show detail process when copying
+mv <fileName> <targerFile> /* cut file to another place
+mv <fileName> <newName>  /* rename the file
+rm <fileName>  /* delete a file
+rm -r <directory> /* delere a folder
+rm -ri <directory> /* delete file in folder one by one with asking y or n
+rm -rf <directory> /* force to delete
+mkdir <directoryName>  /* create a directory>
+rmdir <directoryName>  /* delete a directory but just empty directory 
+system file explaination:
+bin: 可执行二进制文件，也就是普通用户的命令
+boot: 系统引导程序
+dev: 与迎硬件有关的文件，linux将硬件抽象为文件
+etc: 配置文件
+home: 所与用户的信息和文件都保存在home
+lib: 库文件
+media: 自动挂载文件
+mnt:挂载文件，与media类似
+opt: 默认大型软件安装在此
+proc: 当前系统运行的进程，是一个虚拟文件，在内存中，每次系统重启都会重新生成
+root: 超级用户信息
+sbin: 超级用户可执行的文件，及只允许超级用户执行的命令
+sys: 底层硬件文件
+tmp: 临时文件，如安装下载压缩包
+usr: 一般应用程序安装于此
+var: 经常变动的文件，如用户名，登陆信息，邮件，账户等
+date 显示电脑日期
+date -u: 格林尼治时间
+date +%Y--%m--%d: 按指定格式现实，--为自己编辑，可以为其他样子
+clock(hwclock): 显示硬件时间
+cal: 查看日历
+uptime: 系统登陆时间
+cat <fileName>: 显示文件内容
+more <filename>: 翻页显示文件内容，不能往回翻
+less <filename>: 翻页显示文件内容，可以往回翻
+head <filename>: 只显示前几行，默认十行
+head -n 3 <filename>: 显示前三行
+head -f <filename>: 跟踪持续更新
+tail <filename>: 显示后几行，与head类似
+lspci: 查看PCI设备
+lspci -v: 详细查看
+lsusb: 查USB设备，加-v详细查看
+lsmod： 查看驱动
+shutdowm -h now: 立即关机
+shutdown -h +10: 十分钟后关机
+shutdown -h 23:30 十一点关机
+shutdown -r now 立即重启动
+poweroff: 立即关机
+zip <renameFile.zip> <targetFile>  压缩某个文，不能是目录
+unzip <fileName.zip> 解压
+gzip <renameFile.net> <targetFile> 压缩文件
+tar -cvf <fileName.tar> <file>归档文件夹
+tar -xvf <file.tar>解档
+tar -cvzf <filename.tar.giz> <file> 归档并压缩
+tar -xvzf <file.tar.giz>解档并解压缩
+locate <keyword> : 快速查找文件，在数据库中查找，如果数据库没更新，则找不到新加入的，需要手动更新 命令为：updatedb
+find <position> <parameter> 高级查找
+find . -name *xxx* 当前目录下查找文件名含有xxx的文件
+find . -name *xx* -exec <command> {} \ 将查找的文件作为command命令的参数并执行该命令
+find . -name *xxx* -exec ls -l {} \ 显示文件名含有xxx的文件的信息
+<command> -h or --hep 查看命令的参数和用法
+man <command> 详细解释命令文档
+man -k <keyword> 查找包含关键字的man文档,进入文档后按/能进行搜索
+info <command> 与man命令相似，但更详细
+nautilus 启动图形界面，naultilus . 在当前目录下显示图形界面
+还可以通过查找帮助文档获取帮助，默认文档目录：/usr/share/doc
+用户有关：
+id 显示用户id信息
+passwd 修改用户密码
+与用户有关的配置信息在以下文件目录中：
+/etc/passwd	/etc/shadow(保存用户密码）	/etc/group
+whoami  显示当前登陆用户
+who 有哪些用户登陆
+w 有哪些用户登陆在干什么
+useradd <userName> 创建用户
+创建用户同时执行了以下操作：
+<
+在/etc/passwd中添加用户信息
+如果用passwd命令创建了密码则在/etc/shadow中写入密码信息
+为用户建立了home目录
+将/etc/skel中的文件复制到用户名目录下
+建立与用户名相同的组，新建用户默认属于这个同名组
+>
+usermod <para> 修改用户信息
+userdel <username> 删除用户，不删除家目录，家-r参数可以删除家目录
+groupadd <groupName> 创建组名
+groupmod <para> 修改组信息
+gruopdel <groupName> 删除组
+文件权限基于UGO机制，U代表用户，G代表组，O代表其他
+文件权限的形式：如drwxr-xr-x  d表示文件类型，d表示目录，-表示普通文件  rwx表示用户拥有读写执行权限，r-x表示文件拥有读执行，其他拥有读执行权限，如果只拥有读没有执行权限文件也是不能查看的
+chown <userName> <fileName> 将文件的用户权限修改，只修改了当前目录的权限，要修改目录下所有权限加-R参数
+chgrp <groupName> <fileName> 将文件组权限修改，加-R参数修改所有
+chmod <mode> <fileName> 修改权限，在mode前加-R参数第归修改
+mode分为：
+u、g、o代表用用户组其他
+a指代UGO
++、-代表添加删除权限
+r、w、x代表三种权限，也可以用数字代表权限，r-4 w-2 x-1，赋予权限就是添加将要赋予权限对数字的和
+例子：
+chmod u+rw fredo 在fredo文件上给所属用户添加读写权限
+chmod a-x fredo 在fredo文件上给用户组其他删除执行权限
+chmod 660 fredo 在fredo文件上给用户和组添加rw权限，其他不添加权限
+ll 显示当前目录文件详细信息，包含权限信息
+默认权限：
+默认权限由umask设置，umask权限由数字表示如0022，第一位表示特殊权限，后三位表示UGO权限
+umask 查看umask值,普通用户umask值为0002，root用户umask值为0022
+文件默认权限为666减去umask值； 文件夹默认权限为777减去umask值
+umask <nnnn> 设置umask值
+特殊权限：
+suid权限 以文件所属用户身份执行，而非执行为文件的用户
+sgid权限 以文件所属组身份执行，在目录中创建的任意新文件所属组与该文件案相同
+sticky权限 对目录拥有写入权限的用户仅可以删除其拥有文件，无法删除其他用户拥有文件
+设置suid：chmod u+s <filename>
+设置sgid：chmod g+s <filename>
+设置sticky：chmod o+t <filename>
+特殊权限也可以用数字表示：
+suid:4； sgid:2; sticky:1
+exm: chmod 4755 <filename>
+网络基础知识：
+网络编址最广泛的是IP编址，一个IP地址标示一个主机（一个网卡接口实际上），最广泛的是IPv4编址，逐渐向IPv6转换
+IPv4地址32位长，IPv6128位。IPv4分为两部分：网络部分和主机部分，网络部分标示地区，主机部分标示那台主机
+IPv4地址分为四个部分，每个部分8位，如：11000000.10101000.00000001.00000001  用点分十进制表示：192.168.1.1
+IP地址与子网掩码成对出现，网络部分与主机部分不固定，子网掩码为1的是网络部分。例子：
+IP地址	192     .168     .1       .1
+	11000000.10101000.00000001.00000001
+子网掩码	255     .255     .255     .0
+	11111111.11111111.11111111.00000000
+前24位为网络部分，后八位是主机部分
+在同一网络地区下，不同主机之间通信需要知道网卡的MAC地址，主机1发出ARP消息（地址解析协议）主机2收到给出MAC地址
+不同网络之间的通信需要路由器（网关）路由保存了所有不同IP之间的路径，不需要发出ARP消息，路由能直接向导到。
+IP地址难以记忆，一般使用域名进行管理。域名分三部分www.LinuxCast.net www表示主机名，linuxCast表示域名，net表示类型。数据传输还是要使用IP地址，域名与IP地址的转换通过DNS。
+以太网连接
+以太网卡命名eth0，eth1，0表示第一块网卡，1表示第二块
+lspci 查看网卡信息，如果是usb网卡用lsusb命令
+ifconfig -a 查看所有网络接口 （interface cofigure）
+ifconfig <接口名>查看特定网络接口
+ifup <接口名> 启用某接口
+ifdown <接口名> 关闭接口名
+setup  设置网络
+网络检测：
+ping 192.168.1.1(IP address) 检测网络是否连通,也可以直接ping域名
+host <domainName> 测试DNS解析
+dig  <domainName> 测试DNA解析
+ip route 显示路由表
+trace route 追踪目标地址的网络路径，就是经过的路由
+mtr <domainName> 检测网络质量，结合traceroute和ping (my traceroute)
+hostname <name> 修改主机名，非永久
+永久修改主机名需要修改以下目录文件
+/etc/sysconfig/network    令HOSTNAME=<name>(centos 7配置文件不再这）
+故障排查：
+遵循原则是从底层到高层，从自身到外部的流程进行
+先查看网络配置是否正确：
+IP地址		子网掩码		网关		DNS
+查看网关是否连通： ping网关IP地址
+查看DNS解析是否正常
+查看路由路径
+管道和重定向:
+shell的数据流定义如下
+STDIN	标准输入	0	键盘
+STDOUT	标准输出	1	终端
+STDERR	标准错误	2	终端
+管道和重定向控制shell数据流
+分类	关键字	定义	               		例子
+	>	将STDOUT重定向到文件（覆盖）	echo "linuxcast" > outflie
+	>>	将STDOUT重定向到文件（追加）	echo "linuxcast" >> outfile
+重定向	2>	将STDERR重定向到文件（覆盖）	ls nowhere 2> errout
+	2>&1	将STDERR与STDOUT结合		ls nowhewe 2>&1 alloutput
+	<	重定向STDIN			grep linuxcast < /etc/passwd
+管道	|	将一个命令的STDOUT作为另一命令的输入	ls -l | grep linuxcast
+基于关键字搜粟：
+grep <keyword> <directory> 基于关键字搜索文本
+find <directory> <parameter> 基于关键字搜索某文件返回文件目录
+参数：
+-i 忽略大小写； -n 显示所在行数； -v 输出不带关键字的行； -A<x> 包括输出行以及后几行； -B<x> 包括输出行以及前几行
+基于列处理文本：
+cut <parameter> <directory>
+参数：
+-d 指定分割字符，默认是TAB键
+-f 指定输出列号
+-c 基于字符进行分割，输出第几个字符
+例子： cut -d: -f1 /etc/passwd 按:分割，只输出第一列； cut -c2-6 /etc/passwd 输出第二到第六个字符
+文本统计：
+wc <parameter> 统计文本信息 
+-l 统计行数； -w 统计单词数； -c 统计文本大小，单位是字节； -m 统计字符数(不对）
+文本排序：
+sort <parameter> 
+-r 倒顺序
+-n 基于数字排序
+-u 删除重复行（unique）还可以用uniq删除重复行，但只能删除相邻重复
+-f 忽略大小写
+-t<character> 使用分割符分割为列进行排序
+-k<x> 基于指定字符排序时，指定基于那个列排序
+文本比较:
+diff <parameter> <file1> <file2> 比较俩个文件
+-i 忽略大小写
+-b 忽略空格数量
+-u 统一显示比较信息（一般用以生成patch文件）
+diff -u file1 file2 > final.patch
+aspell 用以显示检查英文拼写(centos 7没有）
+aspell check <word>; aspell list <word>
+处理文本内容：（transform)
+tr <text> 只支持重定向
+-d <keyword> < (fileName) 删除关键字
+tr 'a-z' 'A-Z' < (fileName) 转换大小写
+搜索替换：
+sed <regexpression> <filename> 
+eg: sed "s/linux/unix/g" test 将test文件中所有的linux替换成unix
+sed "1,50s/linux/unix/g" test 只查找替换1到50行
+sed -e "s/linux/unix/g" -e "s/linux/unix/g" test 进行多个替换
+sed -f <expressionfilename> <filename>将正则表达式子保存到文件中进行调用
+linux系统启动详解：
+1:启动BIOS，保存在主板的BIOS芯片中。负责检查硬件，不停的嘀嘀嘀嘀嘀表示硬件故障
+2:MBR寻找可启动设备（MBR后66位为55aa的为可启动设备）执行引导代码，可启动设备可以在BIOS进行定义。
+引导码为MBR前446字节。
+3：加载引导程序Grub（主流引导程序），Grub相关文件保存在/boot/grub目录中(centos7不是）
+4：引导程序加载内核kernel，linux将不常用的驱动、功能编译成模块，打包保存在initramfs文件中，需要时进行动态加载
+代替了之前的initrd文件。总结来说引导内核是引导三个：根分区的目录，内核目录及其参数，驱动目录。
+dmesg 查看内核启动信息,信息保存在/var/log/dmesg目录
+5：运行linux第一个进程init，一直运行直到关机。init调用/etc/rc.d/rc.sysinit负责对系统进行初始化，挂载文件系统，
+根据运行级别启动相应服务。init配置文件保存在/etc/init 和/etc/inittab
+linux运行级别：
+0 关机 1 单用户模式 2 不带网络的多用户模式 3多用户模式 4未使用 5多用户图形模式 6重新启动
+runlevel 显示前一个和目前运行级别
+init <n> 切换运行级别
+单用户修改密码：
+为内核传递参数“1” 或者“single”可进入单用户模式
+单用户模式下不启动任何服务，以root登陆，不需要密码
+使用passwd修改密码（按e编辑，在内核最后加1或single，按b启动）
+grub加密：
+在grub.config中的配置文件中加入参数对grub进行加密，密码通过grub-md5-crypt生成
+
+linux程序管理
+源代码形式，打包成tar.gz的归档压缩文件，需要编译成二进制文件才能运行
+源代码基本编译流程（十分麻烦，有大量依赖关系，但兼容性和可控性很好）：
+1 ./configure 检查编译环境、相关文件以及配置参数并生成makefile
+2 make 对源代码进行编译，生成可执行文件
+3 make install 将生成的可执行文件安装到当前计算机中
+为了解决源代码管理的麻烦，开发了RPM（redhat Package Manager）
+RPM将源代码基于特定平台系统编译为可执行文件，并保存依赖关系（追踪依赖但没解决依赖），来简化源代码安装管理，软件包的统一格式是.rpm。 RPM ；命名规范：<softwareName>-<version>.<systym>.<多少位>.rpm
+RPM基础命令：
+rpm -i <安装包名>.rpm 安装软件
+rpm -e <softname> 卸载软件
+rpm -U <softname>.rpm升级形式安装
+rpm -ivh <域名> 通过http、ftp协议安装
+参数信息： -v 显示详细信息 ； -h 显示进度条
+rpm -qa 列出操作系统所有安装的rpm软件
+rpm -qi <software> 查询软件的基本信息
+rpm -ql <software> 查询软件安装了那些文件
+rpm -qf <software> 查询软件由哪个包安装
+rpm -qip <package.rpm> 查询未安装软件包的信息
+rpm -qlp <package.rpm> 查询未安装软件包会安装哪些文件
+RPM验证：
+导入密钥（默认已经导入）： rpm --import RPM-GPG-KEY-CentOS-7
+rpm -K <software>.rpm验证人rpm文件
+rpm -V <software> 验证已安装软件
+
+YUM软件管理（Yellowdog Updater， Modifier）
+YUM是一个RPM的前端程序，用来自动解决RPM的依赖关系，其特点 如下：
+自动解决依赖关系； 对RPM进行分组，基于组进行安装操作； 引入仓库概念，支持多个仓库； 配置简单
+YUM主要是同过仓库解决依赖关系，仓库存放了现有的rpm软件包，安装一个软件时，自动在仓库查找依赖软件并安装。仓库可以是本地的，
+也可以是Http，FTP或NFS形式使用集中的，统一的网络仓库。如果依赖的包不在仓库下则无安装
+YUM仓库配置：
+仓库的配置文件保存在/etc/yum.repos.d/目录下，可以保存多个配置文件
+仓库可以是本地文件，http，ftp，nfs方式； yum配置文件必须是.repo结尾；一个配置文件可以保存多个仓库的加配置信息
+YUM 管理软件的常用命令：
+yum install <softwareName> 安装指定软件，自动删除安装包
+yum remove <softwareName> 卸载指定软件
+yun update <softwareName> 升级指定软件
+yum search <keyword> 搜索软件
+yum list (all | installed | recent | updates)列出所有，安装的，最近的，软件更新的YUM配置的软件
+yum info <software> 显示指定安装软件信息
+yum whatprovides <filename> 查询哪个rpm软件包包含目标文件（不是软件）
+创建本地仓库：
+1 创建一个目录，将所有rpm文件包拷贝到本地目录
+2 用rpm命令手工安装createrepo 软件
+3 运行createrepo -v <yum仓库路径>  来检索仓库，-v用来显示进度信息，索引完成会在当前目录生成repodata文件夹
+4 在/etc/yum.repos.d/目录下添加配置文件：
+[仓库名]
+name= <comment>
+baseurl=file://<仓库目录>
+gpgcheck=1
+yum仓库会生成很多缓存，在运行仓库之前要用yum clean all清除缓存
+5 如果有分组信息，则在运行命令的时候使用-g参数指定分组文件
+createrepo -g /tmp/*compos.xml /<仓库地址>
+centos 的分组信息保存在光盘repodata/目录下，文件名以comps.xml结尾
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
